@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}putthikarn - Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">สวัสดี 👋</h1>
+            <p class="hero-subtitle">ฉันคือ {{ data.name }}</p>
+            <p class="hero-description">นักเรียนมัธยมปลายที่หลงใหลในการเขียนโปรแกรม</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('portfolio') }}" class="btn btn-primary">ดูผลงาน</a>
+                <a href="{{ url_for('contact') }}" class="btn btn-secondary">ติดต่อฉัน</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="info-section">
+    <div class="container">
+        <h2>ข้อมูลเบื้องต้น</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📍 ที่อยู่</h3>
+                <p>เลขที่ {{ data.student_id }}, {{ data.class }}</p>
+                <p>{{ data.school }}</p>
+            </div>
+            <div class="info-card">
+                <h3>📧 อีเมล</h3>
+                <p><a href="mailto:{{ data.email }}">{{ data.email }}</a></p>
+            </div>
+            <div class="info-card">
+                <h3>📱 เบอร์โทร</h3>
+                <p><a href="tel:{{ data.phone }}">{{ data.phone }}</a></p>
+            </div>
+            <div class="info-card">
+                <h3>💻 GitHub</h3>
+                <p><a href="{{ data.github }}" target="_blank">GitHub Profile</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

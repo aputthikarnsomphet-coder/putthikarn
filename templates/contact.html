@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}putthikarn - Contact{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container">
+        <h1 class="page-title">ติดต่อฉัน</h1>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>ข้อมูลติดต่อ</h2>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="icon">📧</span>
+                        <div>
+                            <h4>อีเมล</h4>
+                            <a href="mailto:{{ data.email }}">{{ data.email }}</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📱</span>
+                        <div>
+                            <h4>เบอร์โทร</h4>
+                            <a href="tel:{{ data.phone }}">{{ data.phone }}</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">💻</span>
+                        <div>
+                            <h4>GitHub</h4>
+                            <a href="{{ data.github }}" target="_blank">{{ data.github }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <h2>ส่งข้อความให้ฉัน</h2>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">ชื่อของคุณ *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">อีเมลของคุณ *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">หัวข้อ *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">ข้อความ *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ส่งข้อความ</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+    };
+    
+    try {
+        const response = await fetch('{{ url_for('api_contact') }}', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formData)
+        });
+        const data = await response.json();
+        alert(data.message);
+        if (response.ok) document.getElementById('contactForm').reset();
+    } catch (error) {
+        alert('เกิดข้อผิดพลาด: ' + error);
+    }
+});
+</script>
+{% endblock %}

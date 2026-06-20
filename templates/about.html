@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}putthikarn - About Me{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container">
+        <h1 class="page-title">เกี่ยวกับตัวฉัน</h1>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h2>{{ data.name }}</h2>
+                <p class="subtitle">นักเรียน {{ data.class }} | {{ data.school }}</p>
+                
+                <h3>ข้อมูลส่วนตัว</h3>
+                <div class="info-list">
+                    <p><strong>ชื่อ:</strong> {{ data.name }}</p>
+                    <p><strong>เลขที่:</strong> {{ data.student_id }}</p>
+                    <p><strong>ชั้น:</strong> {{ data.class }}</p>
+                    <p><strong>โรงเรียน:</strong> {{ data.school }}</p>
+                    <p><strong>อีเมล:</strong> <a href="mailto:{{ data.email }}">{{ data.email }}</a></p>
+                    <p><strong>เบอร์โทร:</strong> <a href="tel:{{ data.phone }}">{{ data.phone }}</a></p>
+                </div>
+                
+                <h3>ทักษะ</h3>
+                <ul class="skills-list">
+                    <li>Python Programming</li>
+                    <li>Web Development (HTML, CSS, JavaScript)</li>
+                    <li>Flask Framework</li>
+                    <li>Problem Solving</li>
+                    <li>Communication</li>
+                </ul>
+                
+                <h3>ความสนใจ</h3>
+                <ul class="interests-list">
+                    <li>💻 เขียนโปรแกรม</li>
+                    <li>🌐 Web Development</li>
+                    <li>📚 เรียนรู้เทคโนโลยีใหม่</li>
+                    <li>🎯 แก้ปัญหา</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
